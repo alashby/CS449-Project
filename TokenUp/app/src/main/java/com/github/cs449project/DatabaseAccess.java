@@ -359,7 +359,143 @@ public class DatabaseAccess {
         return list;
     }
 
+    public List<String> getImgsByName(String name) {
+        List<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT * FROM Tokens", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            String currentname = cursor.getString(1);
+            if (name.equals(currentname)) {
+                list.add(cursor.getString(2));
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+        sort(list);
+        return list;
+    }
 
+    public List<String> getImgsByType(String type) {
+        List<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT * FROM Tokens", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            String currenttype = cursor.getString(3);
+            if (type.equals(currenttype)) {
+                list.add(cursor.getString(2));
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+        sort(list);
+
+        return list;
+    }
+
+    public List<String> getImgsBySubType(String subtype) {
+        List<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT * FROM Tokens", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            String currentsubtype = cursor.getString(4);
+            if (subtype.equals(currentsubtype)) {
+                list.add(cursor.getString(2));
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+        sort(list);
+        return list;
+    }
+
+    public List<String> getImgsBySet(String set) {
+        List<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT * FROM Tokens", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            String currentset = cursor.getString(5);
+            if (set.equals(currentset)) {
+                list.add(cursor.getString(2));
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+        sort(list);
+        return list;
+    }
+
+    public List<String> getImgsByArtist(String artist) {
+        List<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT * FROM Tokens", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            String currentartist = cursor.getString(6);
+            if (artist.equals(currentartist)) {
+                list.add(cursor.getString(2));
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+        sort(list);
+        return list;
+    }
+
+
+
+    public List<String> getImgsByColors(String colors) {
+        List<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT * FROM Tokens", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            String currentcombo = cursor.getString(7);
+            String currentcolors = "";
+
+            char[] cols = currentcombo.toCharArray();
+            Arrays.sort(cols);
+            currentcombo = new String(cols);
+
+            for (int i = 0; i < currentcombo.length(); i++){
+                char col = currentcombo.charAt(i);
+                switch(col) {
+                    case 'R': currentcolors += "Red/"; break;
+                    case 'G': currentcolors += "Green/"; break;
+                    case 'B': currentcolors += "Black/"; break;
+                    case 'U': currentcolors += "Blue/"; break;
+                    case 'W': currentcolors += "White/"; break;
+                    case 'A': currentcolors += "Artifact"; break;
+                    case 'C': currentcolors += "Colorless"; break;
+                }
+            }
+            if (currentcolors.charAt(currentcolors.length()-1) == '/') {
+                currentcolors = currentcolors.substring(0, currentcolors.length()-1);
+            }
+
+            if (colors.equals(currentcolors)) {
+                list.add(cursor.getString(2));
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+        sort(list);
+        return list;
+    }
+
+    public List<String> getImgsByTag(String tag) {
+        List<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT * FROM Tokens", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            String currenttags = cursor.getString(8);
+            List<String> currenttaglist = Arrays.asList(currenttags.split(","));
+            if (currenttaglist.contains(tag)) {
+                list.add(cursor.getString(2));
+            }
+            cursor.moveToNext();
+        }
+        cursor.close();
+        sort(list);
+        return list;
+    }
 
     public void insertToken(Token token) {
         ContentValues values = new ContentValues();

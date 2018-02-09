@@ -16,7 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BrowseActivity1"></activity>
+        <activity android:name=".BrowseByActivity" />
+        <activity android:name=".ByFilterActivity" />
+        <activity android:name=".FilteredBrowseActivity"></activity>
     </application>
 
 </manifest>

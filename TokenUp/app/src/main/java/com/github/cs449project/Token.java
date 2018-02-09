@@ -10,27 +10,26 @@ import java.util.UUID;
 
 public class Token {
 
-    private UUID _id;
+    private String _id;
     private String _tokenName;
     private String _imgFile;
     private String _type;
     private String _subType;
     private String _set;
     private String _artist;
-    private List<String> _colors;
-    private List<String> _tags;
+    private String _colors;
+    private String _tags;
 
     public Token() {
-        this(UUID.randomUUID());
     }
 
-    public Token(UUID id) {
+    public Token(String id) {
         this._id = id;
     }
 
     public Token
-            (UUID id, String tokenName, String imgFile, String type, String subType, String set,
-             String artist, List<String> colors, List<String> tags) {
+            (String id, String tokenName, String imgFile, String type, String subType, String set,
+             String artist, String colors, String tags) {
         this._id = id;
         this._tokenName = tokenName;
         this._imgFile = imgFile;
@@ -42,7 +41,7 @@ public class Token {
         this._tags = tags;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this._id = id;
     }
     public void setTokenName(String tokenName) {
@@ -63,14 +62,14 @@ public class Token {
     public void setArtist(String artist) {
         this._artist = artist;
     }
-    public void setColors(List<String> colors) {
+    public void setColors(String colors) {
         this._colors = colors;
     }
-    public void setTags(List<String> tags) {
+    public void setTags(String tags) {
         this._tags = tags;
     }
 
-    public UUID getId() {
+    public String getId() {
         return this._id;
     }
     public String getTokenName() {
@@ -91,10 +90,10 @@ public class Token {
     public String getArtist() {
         return this._artist;
     }
-    public List<String> getColors() {
+    public String getColors() {
         return this._colors;
     }
-    public List<String> getTags() {
+    public String getTags() {
         return this._tags;
     }
 }

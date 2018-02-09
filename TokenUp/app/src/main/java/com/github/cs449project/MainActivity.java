@@ -8,11 +8,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
+    private DatabaseAccess databaseAccess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        this.databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
     }
 
     @Override
@@ -27,13 +30,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_selecttoken:
-                Intent activityBrowse = new Intent(MainActivity.this, BrowseActivity1.class);
+                Intent activityBrowse = new Intent(MainActivity.this, BrowseByActivity.class);
                 startActivity(activityBrowse);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
 
 
 }
